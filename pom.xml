@@ -9,7 +9,7 @@
   <version>1.0-SNAPSHOT</version>
 
   <name>mycalorieninja</name>
-  <!-- FIXME change it to the project's website -->
+  <url>https://github.com/Longwater1234/mycalorieninja</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -30,6 +30,7 @@
       <artifactId>json</artifactId>
       <version>20210307</version>
     </dependency>
+
   </dependencies>
 
   <build>

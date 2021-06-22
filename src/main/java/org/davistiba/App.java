@@ -16,7 +16,7 @@ import java.util.Scanner;
 /**
  * @author davis tibbz, 2021
  */
-public class App extends PrintFile {
+public class App {
     static String userInput;
     static String APIKEY = "";
 
