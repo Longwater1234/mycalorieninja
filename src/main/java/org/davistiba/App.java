@@ -12,22 +12,22 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Scanner;
-import java.util.concurrent.CompletableFuture;
 
 /**
  * @author davis tibbz, 2021
  */
 public class App extends PrintFile {
     static String userInput;
-    static String APIKEY;
+    static String APIKEY = "";
 
     public static void main(String[] args) throws Exception {
 
-        //-- First, Load the CalorieNinja APIKEY from local.properties file (@ ROOT/)
+        //-- First, Load the CalorieNinja APIKEY from local.properties file
         Properties prop = new Properties();
         FileInputStream fStream = new FileInputStream("local.properties");
         prop.load(fStream);
         APIKEY = prop.getProperty("APIKEY");
+        fStream.close();
 
         System.out.print("Enter any food name: ");
 
@@ -56,7 +56,6 @@ public class App extends PrintFile {
         System.out.println("Status code: " + statusCode);
 
         if (statusCode == 200) {
-
             String json = response.get().body();
 
             JSONObject resultObject = new JSONObject(json);
@@ -71,7 +70,7 @@ public class App extends PrintFile {
 
             // --Build a readable report
             StringBuilder report = new StringBuilder();
-            report.append("\n Nutritional information for " + userInput);
+            report.append("\n Nutritional information for ").append(userInput);
             report.append("\n------------------------------------\n");
             for (Map.Entry<String, Object> entry : nutrients.entrySet()) {
                 report.append(String.format("%s:\t%s\n", entry.getKey(), entry.getValue()));
@@ -87,7 +86,7 @@ public class App extends PrintFile {
 
         } else {
             // request to API failed.
-            System.out.println("Error: " + statusCode + " " + response.get().body());
+            System.out.printf("Error: %d %s", statusCode, response.get().body());
         }
     }
 }
