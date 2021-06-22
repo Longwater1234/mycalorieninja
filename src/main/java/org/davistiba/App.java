@@ -49,7 +49,7 @@ public class App extends PrintFile {
                 .build();
 
         // -- Send the request Async; Handle the response.
-        CompletableFuture<HttpResponse<String>> response = HttpClient.newHttpClient()
+        var response = HttpClient.newHttpClient()
                 .sendAsync(request, HttpResponse.BodyHandlers.ofString());
 
         int statusCode = response.get().statusCode();
