@@ -74,7 +74,7 @@ public class App extends PrintFile {
             report.append("\n Nutritional information for " + userInput);
             report.append("\n------------------------------------\n");
             for (Map.Entry<String, Object> entry : nutrients.entrySet()) {
-                report.append(entry.getKey() + ":\t" + entry.getValue() + "\n");
+                report.append(String.format("%s:\t%s\n", entry.getKey(), entry.getValue()));
             }
 
             System.out.println(report);

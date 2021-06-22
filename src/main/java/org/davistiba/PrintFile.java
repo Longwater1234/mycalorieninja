@@ -26,7 +26,8 @@ public class PrintFile {
             fileName = fileName.replaceAll(pattern, "").toLowerCase().trim();
             fileContent = fileContent.trim();
             // REMEMBER add regex filter for fileName as shown above
-            File file = new File("E:\\JAVA_wkspc\\fileoutputs\\" + fileName);
+            File file = new File("E:\\JAVA_wkspc\\fileoutputs\\" + fileName); // <-- WARNING!
+            // ^^⚠ above, replace with your own directory path!
             if (file.exists())
                 throw new IOException("File already exists");
             // else..
