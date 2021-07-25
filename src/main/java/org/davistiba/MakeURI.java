@@ -4,14 +4,14 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 public class MakeURI {
-    private URI finalLink;
+    private static URI finalLink;
 
     /*
      * https://api.calorieninjas.com/v1/nutrition?query=red%20apple
      *
      */
 
-    public URI makeLink(String Query) {
+    public static URI makeLink(String Query) {
         Query = "query=" + Query;
         try {
             finalLink = new URI("https",
