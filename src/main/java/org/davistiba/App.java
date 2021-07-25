@@ -41,7 +41,7 @@ public class App {
 
         // -- Build the request call to the API
         HttpRequest request = HttpRequest.newBuilder()
-        .uri(_uri).header("Content-Type", "application/json")
+                .uri(_uri).header("Content-Type", "application/json")
                 .header("X-Api-Key", APIKEY)
                 .timeout(Duration.ofSeconds(5))
                 .GET()
