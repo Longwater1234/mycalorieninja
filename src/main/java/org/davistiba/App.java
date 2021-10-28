@@ -47,15 +47,15 @@ public class App {
                 .GET()
                 .build();
 
-        // -- Send the request Async; Handle the response.
+        // -- Send the request, Handle the response.
         var response = HttpClient.newHttpClient()
-                    .sendAsync(request, HttpResponse.BodyHandlers.ofString());
+                    .send(request, HttpResponse.BodyHandlers.ofString());
 
-        int statusCode = response.get().statusCode();
+        final int statusCode = response.statusCode();
         System.out.println("Status code: " + statusCode);
 
         if (statusCode == 200) {
-            String json = response.get().body();
+            String json = response.body();
 
             JSONObject resultObject = new JSONObject(json);
             if (resultObject.getJSONArray("items").isEmpty()) {
@@ -85,7 +85,7 @@ public class App {
 
         } else {
             // request to API failed.
-            System.out.printf("Error: %d %s", statusCode, response.get().body());
+            System.out.printf("Error: %d %s", statusCode, response.body());
         }
     }
 }
