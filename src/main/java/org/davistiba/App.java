@@ -22,12 +22,16 @@ public class App {
 
     public static void main(String[] args) throws Exception {
 
-        // -- First, Load the CalorieNinja APIKEY from local.properties file
-        Properties prop = new Properties();
-        FileInputStream fStream = new FileInputStream("local.properties");
-        prop.load(fStream);
-        APIKEY = prop.getProperty("APIKEY");
-        fStream.close();
+        /*  First, Load the CalorieNinja APIKEY from local.properties file  */
+
+        // Properties prop = new Properties();
+        // FileInputStream fStream = new FileInputStream("local.properties");
+        // prop.load(fStream);
+		// fStream.close();
+
+		// OR USE ENVIRONMENTAL VARIABLE to store and get API-KEY
+        APIKEY = System.getenv("API-KEY");
+       
 
         System.out.print("Enter any food name: ");
 
@@ -47,7 +51,7 @@ public class App {
                 .GET()
                 .build();
 
-        // -- Send the request, Handle the response.
+        // -- Send the request (blocking), Handle the response.
         var response = HttpClient.newHttpClient()
                     .send(request, HttpResponse.BodyHandlers.ofString());
 
