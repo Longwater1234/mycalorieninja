@@ -16,3 +16,4 @@ bin/
 tmp/
 .metadata
 .project
+local.properties

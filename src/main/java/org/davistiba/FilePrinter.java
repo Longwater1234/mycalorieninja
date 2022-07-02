@@ -4,13 +4,16 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
-public class PrintFile {
+public class FilePrinter {
     private String fileContent, fileName;
 
-    public void setfileContent(String fileContent) {
+    public void setFileContent(String fileContent) {
         this.fileContent = fileContent;
     }
 
@@ -28,16 +31,17 @@ public class PrintFile {
             // REMEMBER add regex filter for fileName as shown above
             File file = new File("E:\\JAVA_wkspc\\fileoutputs\\" + fileName); // <-- WARNING!
             // ^^⚠ above, replace with your own directory path!
-            if (file.exists())
+            if (file.exists()) {
                 throw new IOException("File already exists");
-            // else..
-            FileWriter writer = new FileWriter(file);
-            BufferedWriter bufferedWriter = new BufferedWriter(writer);
-            bufferedWriter.write(fileContent);
-            bufferedWriter.newLine();
-            bufferedWriter.append("File created: ").append(SimpleDateFormat.getDateTimeInstance().format(new Date()));
-            bufferedWriter.close();
-            System.out.println("File has been successfully created");
+            }
+            BufferedWriter bw = new BufferedWriter(new FileWriter(file));
+            bw.write(fileContent);
+            bw.newLine();
+            bw.append("File created: ");
+            bw.append(SimpleDateFormat.getDateTimeInstance().format(new Date()));
+            bw.flush();
+            bw.close();
+            System.out.println("File created successfully");
 
         }
     }
